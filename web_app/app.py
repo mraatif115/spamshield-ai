@@ -1,8 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 import pickle
+import os
 
-# Flask app create
 app = Flask(__name__)
+BASE_DIR = os.path.dirname(__file__)
+
+model = pickle.load(open(os.path.join(BASE_DIR,"model.pkl"),"rb"))
+vectorizer = pickle.load(open(os.path.join(BASE_DIR,"vectorizer.pkl"),"rb"))
+# Flask app create
+
 
 # Load ML model
 model = pickle.load(open("model.pkl", "rb"))
