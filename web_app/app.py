@@ -5,8 +5,11 @@ import os
 app = Flask(__name__)
 BASE_DIR = os.path.dirname(__file__)
 
-model = pickle.load(open(os.path.join(BASE_DIR,"model.pkl"),"rb"))
-vectorizer = pickle.load(open(os.path.join(BASE_DIR,"vectorizer.pkl"),"rb"))
+model = pickle.load(open(os.path.join(BASE_DIR, "model.pkl"), "rb"))
+vectorizer = pickle.load(open(os.path.join(BASE_DIR, "vectorizer.pkl"), "rb"))
+
+
+
 # Flask app create
 
 
@@ -45,5 +48,8 @@ def predict():
 
 
 # Run server
+import os
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
